@@ -14,6 +14,7 @@ $ yarn install
 - Navigate to public folder
 - Run the following command
 ```sh
-$ python server.py
+$ python server.py // For python2
+$ python server3.py // For python3
 ```
 

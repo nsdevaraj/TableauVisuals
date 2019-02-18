@@ -9,16 +9,23 @@
 # To generate a certificate use:
 # openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
 
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+#from http.server import HTTPServer, SimpleHTTPRequestHandler
+#import ssl
+#
+#separator = "-" * 80
+#port = 4443
+#httpd = HTTPServer(("", port), SimpleHTTPRequestHandler)
+#httpd.socket = ssl.wrap_socket(httpd.socket, keyfile='ssl.key', certfile='ssl.crt', server_side=True)
+#
+#print(separator)
+#print("Server running on https://localhost:" + str(port))
+#print(separator)
+#
+#httpd.serve_forever()
+
+import BaseHTTPServer, SimpleHTTPServer
 import ssl
 
-separator = "-" * 80
-port = 4443
-httpd = HTTPServer(("", port), SimpleHTTPRequestHandler)
+httpd = BaseHTTPServer.HTTPServer(('localhost', 4443), SimpleHTTPServer.SimpleHTTPRequestHandler)
 httpd.socket = ssl.wrap_socket(httpd.socket, keyfile='ssl.key', certfile='ssl.crt', server_side=True)
-
-print(separator)
-print("Server running on https://localhost:" + str(port))
-print(separator)
-
 httpd.serve_forever()
